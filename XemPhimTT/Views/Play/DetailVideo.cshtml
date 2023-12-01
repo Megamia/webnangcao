@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DetailVideo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var isLoggedIn = Session["userId"] != null;
+    var userId = isLoggedIn ? (int)Session["userId"] : -1;
+    int movieId = @Model.Data1.movieid;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="title-video">
+                    <a class="back-movie text-lawngreen fs-5" href="@Url.Action("Detail", "ListMovie", new { id = movieId})">@Model.Data1.Movie.moviename</a>
+                    <span class="text-white fs-5">></span>
+                    <span class="text-lawngreen fs-5">@Model.Data1.videoname</span>
+                </div>
+                <div class="play-movie header-text">
+                    <video class="video" controls>
+                        <source src="data:video/mp4;base64,@Convert.ToBase64String(@Model.Data1.videofile)" type="video/mp4">
+                    </video>
+                </div>
+                <div class="nxpv-video">
+                    <div class="text-lawngreen pb-2">
+                        Tập khác
+                    </div>
+                    <div class="d-flex">
+                        @foreach (var item in Model.Data2)
+                        {
+                            if (item.videoid != null)
+                            {
+                            <a href="@Url.Action("DetailVideo", "Play", new { id = @item.videoid })"><div class="video-box">@item.videoname</div></a>
+                            }
+                        }
+                    </div>
+                </div>
+                <div  id="commentContainer" class="comment-body">
+                    @foreach (var item in Model.Data3)
+                    {
+                        if (item.commentid != null)
+                        {<div class="box-commet d-flex">
+                                <div class="p-1">
+                                    <img class="img-user-comment" src="~/assets/web/images/stream-05.jpg" alt="">
+                                </div>
+                                <div>
+                                    <span class="text-blue d-block fw-bold">@item.User.fullname</span>
+
+                                    <span class="text-black">@item.comment1</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

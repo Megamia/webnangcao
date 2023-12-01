@@ -1,0 +1,66 @@
+﻿@model IEnumerable<XemPhimTT.Models.Subscription>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đăng ký</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>Người dùng</span>
+                        </th>
+                        <th>
+                            <span>Ngày đăng ký</span>
+                        </th>
+                        <th>
+                            <span>Ngày hết hạn</span>
+                        </th>
+                        <th>
+                            <span>Trạng thái</span>
+                        </th>
+                        <th>
+                            <span>Gói đăng ký</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.startdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.enddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.state)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubscriptionPackage.name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.subscriptionid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.subscriptionid })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<XemPhimTT.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movie</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            Tên phim
+                        </th>
+                        <th class="text-center">
+                            Số tập
+                        </th>
+                        <th class="text-center">
+                            Năm phát hành
+                        </th>
+                        <th class="text-center">
+                            Đạo diễn
+                        </th>
+                        <th class="text-center">
+                            Mô tả
+                        </th>
+                        <th class="text-center">
+                            Loại phim
+                        </th>
+                        <th class="text-center">
+                            Ảnh
+                        </th>
+                        <th class="text-center">
+                            Ảnh bìa
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.moviename)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.duration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.releaseyear)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.director)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Movietype.movietypename)
+                            </td>
+                            <td>
+                                @{
+
+                                    if (item.movieimage != null && item.movieimage.Length > 0)
+                                    {
+                                        var base64 = Convert.ToBase64String(item.movieimage);
+                                        var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+
+                                        <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    if (item.moviebackground != null && item.moviebackground.Length > 0)
+                                    {
+                                        var base65 = Convert.ToBase64String(item.moviebackground);
+                                        var gbsrc = string.Format("data:image/gif;base64,{0}", base65);
+                                        <img src="@gbsrc" style="max-width:100px;max-height:100px" />
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.movieid }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.movieid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.movieid })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="860a3fa8098848168ba71e9a905eea26" Name="Diagram1">
+        <EntityTypeShape EntityType="WebMovieModel.Category" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.CategoryList" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Comment" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Movie" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Movietype" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Rating" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Subscription" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.SubscriptionPackage" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebMovieModel.Video" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="WebMovieModel.FK_CategoryList_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_CategoryList_Movie" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Comment_Movie" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Movie_Movietype" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Rating_Movie" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Video_Movie" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Rating_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Subscription_SubscriptionPackage" ManuallyRouted="false" />
+        <AssociationConnector Association="WebMovieModel.FK_Subscription_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

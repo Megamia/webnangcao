@@ -1,0 +1,60 @@
+﻿@model IEnumerable<XemPhimTT.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>Tên tài khoản</span>
+                        </th>
+                        <th>
+                            <span>Mật khẩu</span>
+                        </th>
+                        <th>
+                            <span>Email</span>
+                        </th>
+                        <th>
+                            <span>Tên người dùng</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fullname)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.userid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.userid })
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+            </div>
+</div>
+</div>

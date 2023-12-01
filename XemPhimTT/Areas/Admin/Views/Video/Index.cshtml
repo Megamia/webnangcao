@@ -1,0 +1,63 @@
+﻿@model IEnumerable<XemPhimTT.Models.Video>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>VIDEO</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên video
+                        </th>
+                        <th>
+                            Video
+                        </th>
+                        <th>
+                            Tên phim
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.videoname)
+                            </td>
+                            <td>
+                                @{
+                                    if (item.videofile != null && item.videofile.Length > 0)
+                                    {
+                                        var base64 = Convert.ToBase64String(item.videofile);
+                                        var videoSrc = string.Format("data:video/mp4;base64,{0}", base64);
+                                        <video width="200" height="120" controls>
+                                            <source src="@videoSrc" type="video/mp4">
+                                        </video>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Movie.moviename)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.videoid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.videoid })
+                            </td>
+                        </tr>
+                    }
+</tbody>
+            </table>
+            </div>
+</div>
+</div>

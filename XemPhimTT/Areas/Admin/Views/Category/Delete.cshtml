@@ -1,0 +1,42 @@
+﻿@model XemPhimTT.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <span>Tên thể loại(Tiếng Anh)</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryname)
+        </dd>
+
+        <dt>
+            <span>Tên thể loại(Tiếng Việt)</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorynamevn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Remove", "Category", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model => Model.categoryid)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

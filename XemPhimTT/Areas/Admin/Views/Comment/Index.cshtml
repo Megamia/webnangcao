@@ -1,0 +1,54 @@
+﻿@model IEnumerable<XemPhimTT.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Comment</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Phim
+                        </th>
+                        <th>
+                            Người dùng
+                        </th>
+                        <th>
+                            Comment
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Movie.moviename)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.comment1)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.commentid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.commentid })
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+            </div>
+</div>
+</div>

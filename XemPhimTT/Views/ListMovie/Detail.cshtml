@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var isLoggedIn = Session["userId"] != null;
+    var userId = isLoggedIn ?(int)Session["userId"]: -1;
+    int movieId = @Model.Data1.movieid;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="banner-movie header-text" style="background-image: url('data:image/jpeg;base64,@Convert.ToBase64String(@Model.Data1.moviebackground)')">
+
+                    <div>
+                        <img class="img-movie" src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.Data1.movieimage)" alt="">
+                        @if (@Model.Data5 != null)
+                        {
+                            <a class="text-white fs-4" href="@Url.Action("DetailVideo", "Play", new { id = @Model.Data5.videoid })"><div class="play">Xem Phim</div></a>
+                        }
+                    </div>
+                    <div class="describe-movie">
+                        <h4 class="name-movie">@Model.Data1.moviename</h4>
+                        <span class="description-movie">@Model.Data1.description</span>
+                    </div>
+                </div>
+                <div class="detail-movie">
+                    <div class="detail-title">
+                        <i class="fa fa-file-alt text-lawngreen fs-4"></i>
+                        <span class="text-lawngreen fs-4">Thông tin phim</span>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-item-video">
+                            <i class="fa fa-circle-dot text-lawngreen fs-7"></i>
+                            <span class="text-white">Tập mới:</span>
+                            <div class="d-flex">
+                                @{
+                                    var count = 0;
+                                    var lastIndex = Model.Data4.Count - 1;
+                                }
+                                @for (int i = lastIndex; i >= 0; i--)
+                                {
+                                    var item = Model.Data4[i];
+                                    if (count < 3)
+                                    {
+                                        <a href="@Url.Action("DetailVideo", "Play", new { id = @item.videoid })"><div class="video-box">@item.videoname</div></a>
+                                        count++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa fa-circle-dot text-lawngreen fs-7"></i>
+                            <span class="text-white">Thể loại:</span>
+                            @foreach (var item in Model.Data2)
+                            {
+                                <span class="text-lawngreen">@item.Category.categoryname</span>
+                                <span class="text-white">,</span>
+                            }
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa fa-circle-dot text-lawngreen fs-7"></i>
+                            <span class="text-white">Đạo diễn:</span>
+                            <span class="text-lawngreen">@Model.Data1.director</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa fa-circle-dot text-lawngreen fs-7"></i>
+                            <span class="text-white">Năm phát hành:</span>
+                            <span class="text-lawngreen">@Model.Data1.releaseyear</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa fa-circle-dot text-lawngreen fs-7"></i>
+                            <span class="text-white">Thời lượng:</span>
+                            <span class="text-lawngreen">@Model.Data1.duration Tập</span>
+                        </div>
+                    </div>
+                    <div id="commentContainer" class="comment-body">
+                        @if (isLoggedIn)
+                        {
+
+
+                            <div class="box-commet d-flex">
+                                <div class="p-1">
+                                    <img class="img-user-comment" src="~/assets/web/images/stream-05.jpg" alt="">
+                                </div>
+                                <div class="flex-fill">
+                                    <span class="text-blue d-block fw-bold">@Session["fullname"].ToString()</span>
+                                    @using (Html.BeginForm("AddComment", "ListMovie", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.HiddenFor(m => userId)
+                                        @Html.HiddenFor(m => movieId)
+                                        @Html.TextArea("comment1", null, new { @class = "form-control input-comment" })
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    }
+                                </div>
+                            </div>
+                            <div class="line-comment"></div>
+
+                        }
+                        @foreach (var item in Model.Data3)
+                        {<div class="box-commet d-flex">
+                                <div class="p-1">
+                                    <img class="img-user-comment" src="~/assets/web/images/stream-05.jpg" alt="">
+                                </div>
+                                <div>
+                                    <span class="text-blue d-block fw-bold">@item.User.fullname</span>
+
+                                    <span class="text-black">@item.comment1</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

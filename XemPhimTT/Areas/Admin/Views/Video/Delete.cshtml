@@ -1,0 +1,50 @@
+﻿@model XemPhimTT.Models.Video
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Video</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.videoname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.videofilename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videofilename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieid)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Remove", "Video", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model => Model.movieid)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

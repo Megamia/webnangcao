@@ -1,0 +1,48 @@
+﻿@model IEnumerable<XemPhimTT.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Category</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên thể loại(Tiếng Anh)
+                        </th>
+                        <th>
+                            Tên thể loại(Tiếng Việt)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.categoryname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.categorynamevn)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.categoryid }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.categoryid })
+                            </td>
+                        </tr>
+                    }
+</tbody>
+            </table>
+            </div>
+</div>
+</div>
